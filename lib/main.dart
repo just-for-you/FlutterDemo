@@ -11,7 +11,7 @@ void getDataByHttpClient() async {
 
   //1.创建 client.
   //2.构造 Uri.
-  //3.发起请求, 等待请求，同时您也可以配置请求headers、 body。
+  //3.发起请求, 等待请求，同时您也可以配置请求headers、 body.
   //4.关闭请求, 等待响应.
   //5.解码响应的内容.
 
@@ -34,6 +34,12 @@ void getDataByHttpClient() async {
       var json = jsonDecode(responseBody);
       print("======================json===============================");
       print(json);
+
+      int.parse("");
+      double.parse("");
+      12.toString();
+      String piAsString = 3.14159.toStringAsFixed(2);
+      assert(piAsString == '3.14');
     } else {
       print("===========not ok");
     }
