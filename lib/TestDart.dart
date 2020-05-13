@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'DetailPage.dart';
 
-void main() => runApp(MyApp());
+// main()函数是Dart中的预定义方法。此方法充当应用程序的入口点。Dart脚本需要main()方法来执行。
+void main() => runApp(DetailPage());
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,7 +18,6 @@ class TestDart extends StatefulWidget {
 
   @override
   TestDartState createState() => TestDartState();
-
 }
 
 class TestDartState extends State<TestDart> {
@@ -28,4 +29,5 @@ class TestDartState extends State<TestDart> {
   }
 
 }
+
 
