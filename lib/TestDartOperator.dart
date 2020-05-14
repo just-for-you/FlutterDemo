@@ -13,7 +13,10 @@
 ///条件 expr1 ? expr2 : expr3
 ///级联	..
 ///赋值	= *= /= ~/= %= += -= <<= >>= &= ^= |= ??=
+///扩展运算符 ... ...? （Dart 2.3引入）
 
+
+///Inner Function 内部函数
 
 void main() {
 
@@ -159,15 +162,15 @@ void main() {
   /// 2.expr1 ?? expr2 (如果expr1为非空，则返回其值；否则，计算并返回expr2的值。)
   var visibility = (a == 0) ? 'public' : 'private';
   print(visibility);
-  String playerName(String name) => name ?? 'Guest';
+  String playerName(String name) => name ?? 'Guest'; //Inner Function
   print(playerName("tiankun"));
   print(playerName(null));
 
   // 稍微长一点的版本使用 ?: 操作符
-  String playerName1(String name) => name != null ? name : 'Guest';
+  String playerName1(String name) => name != null ? name : 'Guest'; //Inner Function
 
   // 非常长的使用if - else语句的版本
-  String playerName2(String name) {
+  String playerName2(String name) { //Inner Function
     if (name != null) {
       return name;
     } else {
@@ -179,14 +182,60 @@ void main() {
   // 级联(..)允许您对同一对象执行一系列操作。除了函数调用，您还可以访问同一对象上的字段。
   // 这通常会省去创建临时变量的步骤，并允许您编写更多的级联代码。
 
+  //建造者：链式调用方式
+  User()
+      .withName("android")
+      .withAge(10)
+      .printId();
+
+  //级联(..)符号调用方式
+  User()
+    ..name = "JiHui"
+    ..age=27
+    ..printId();
   //注意:严格来说，级联的“双点”符号不是运算符。这只是Dart语法的一部分。
+
+  print("============= 拓展运算符 ===========");
+  //Dart 2.3引入了扩展运算符(...)和空值感知扩展运算符(...?)，它提供了一种将多个元素插入集合的简洁方法。
+  var list5 = [1, 2, 3];
+  var list6 = [0, ...list5];//[0, 1, 2, 3]
+  assert(list6.length == 4);
+  //如果 list 可能为 null，此时则需要使用空值感知扩展运算符，否则会抛出异常
+  //空值感知扩展运算符只有当 list 不为 null 时才会执行插值操作
+  var list9;
+  var list10 = [0, ...?list9];
+  print(list10); //[0]
 
   print("============= 其他操作符 ===========");
   /// ()	函数应用	表示函数调用
   /// []	列表访问	指列表中指定索引处的值
   /// .	  成员访问	指表达式的属性；示例: foo.bar从表达式foo中选择属性bar
-  /// ?.	条件成员访问	跟.差不多,但是最左边的操作数可以为空；例子:foo?.bar从表达式foo中选择属性bar，除非foo为空(在这种情况下，foo?.bar值为空)
+  /// ?.	条件成员访问符	 跟.差不多,但是最左边的操作数可以为空；例子:foo?.bar从表达式foo中选择属性bar，除非foo为空(在这种情况下，foo?.bar值为空)
+  //如果 ?. 左边的变量值不为 null，则右边的操作生效
+  //用于避免发生空指针异常
+  var areaT;
+  print(areaT?.runtimeType); //null
+  var nameK = "tiankun";
+  print(nameK?.runtimeType);//String
+}
 
 
+//测试级联符号
+class User {
+  String name;
+  int age;
+  User({this.name = "Foo", this.age = 10});//可选命名参数
+
+  User withName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  User withAge(int age) {
+    this.age = age;
+    return this;
+  }
+
+  void printId() => print("$name is $age years old.");
 }
 
