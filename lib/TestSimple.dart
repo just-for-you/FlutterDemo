@@ -1,9 +1,10 @@
 import 'dart:core';
 //import 'dart:mirrors'; 反射
 
-//测试 dart基础语法
+/// 测试 dart基础语法
 
-//高阶语法：匿名函数，闭包函数，箭头函数，自执行函数，递归函数，回调函数
+/// 高阶语法：匿名函数，闭包函数，箭头函数，自执行函数，递归函数，回调函数
+///
 /*
 * 多行注释和单行注释
 * 以分号结尾且必需有
@@ -136,7 +137,7 @@ void main() {
   nobleGases[18] = 'argon';
 
   //================= 常用运算符 =====================
-  print("==========================常用运算符 ================");
+  print("========================== 常用运算符 ================");
   //is 用于判断变量是否是指定的数据类型
   //is! 含义是 is 取反
   var strValue = "leavesC";
@@ -191,7 +192,7 @@ void main() {
   var a = 2;  // Bit presentation 10
   var b = 3;  // Bit presentation 11
   var result = (a & b);
-  print("(a & b) => $result");//2
+  print("(a & b) => $result");//0
   result = (a | b);
   print("(a | b) => $result");//3
   result = (a ^ b);
