@@ -24,6 +24,9 @@ dependencies:
   # 请使用pub上3.0.0分支的最新版本
   dio: ^3.0.0
 
+  # Dart XML是一个轻量级的库，它是开源的，可以稳定地解析，遍历，查询和构建XML文档。
+  xml:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
