@@ -1,7 +1,7 @@
 
 
 
-/// operator 操作运算符
+/// operator 操作运算符 -重要
 /// https://www.jianshu.com/p/64a6ed7581aa
 ///一元后缀	expr++ expr-- () [] . ?.
 ///一元前缀	-expr ！expr ~expr ++expr --expr
@@ -191,7 +191,8 @@ void main() {
   //级联(..)符号调用方式
   User()
     ..name = "JiHui"
-    ..age=27
+    ..age=17
+    ..testInterModalOperator()
     ..printId();
   //注意:严格来说，级联的“双点”符号不是运算符。这只是Dart语法的一部分。
 
@@ -207,9 +208,9 @@ void main() {
   print(list10); //[0]
 
   print("============= 其他操作符 ===========");
-  /// ()	函数应用	表示函数调用
-  /// []	列表访问	指列表中指定索引处的值
-  /// .	  成员访问	指表达式的属性；示例: foo.bar从表达式foo中选择属性bar
+  /// ()	函数应用符	表示函数调用
+  /// []	列表访问符	指列表中指定索引处的值
+  /// .	  成员访问符（句点运算符）	指表达式的属性；示例: foo.bar从表达式foo中选择属性bar
   /// ?.	条件成员访问符	 跟.差不多,但是最左边的操作数可以为空；例子:foo?.bar从表达式foo中选择属性bar，除非foo为空(在这种情况下，foo?.bar值为空)
   //如果 ?. 左边的变量值不为 null，则右边的操作生效
   //用于避免发生空指针异常
@@ -234,6 +235,10 @@ class User {
   User withAge(int age) {
     this.age = age;
     return this;
+  }
+
+  void testInterModalOperator() {
+    age *= 2;
   }
 
   void printId() => print("$name is $age years old.");

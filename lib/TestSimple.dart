@@ -1,9 +1,9 @@
 import 'dart:core';
 //import 'dart:mirrors'; 反射
 
-/// 测试 dart基础语法
+/// dart基础语法： 数据类型 常用运算符 流程控制 函数 枚举
 
-/// 高阶语法：匿名函数，闭包函数，箭头函数，自执行函数，递归函数，回调函数
+/// 高阶语法：匿名函数，闭包函数，箭头函数，自执行函数，递归函数，回调函数 -重要
 ///
 void main() {
   print("========================== 数据类型 ================");
@@ -24,7 +24,7 @@ void main() {
 
   // String 转为 int
   var one = int.parse('1');
-  assert(one == 1);//如果不相等会报异常
+  assert(one == 1); //如果不相等会报异常
 
   // String 转为 double
   var onePointOne = double.parse('1.1');
@@ -58,7 +58,7 @@ void main() {
   print(val1); // 输出：12
 
   const pi = 3.14;
-  const area = pi*12*12;
+  const area = pi * 12 * 12;
   print("The output is $area"); // 输出： 452.15999999999997
 
   //列表类型
@@ -134,13 +134,13 @@ void main() {
 
   //as 用于强制类型转换  不同类型不能强制转化
   num numValue3 = 10.5;
-  print('The type of a is ${numValue3.runtimeType}');//double
+  print('The type of a is ${numValue3.runtimeType}'); //double
   num numValue = 10;
-  print('The type of a is ${numValue.runtimeType}');//int
+  print('The type of a is ${numValue.runtimeType}'); //int
   int intValue = numValue as int;
   print(intValue);
   //可以使用 Object 的 runtimeType 属性来判断实例 的类型，该属性返回一个 Type 对象。
-  print('The type of a is ${numValue.runtimeType}');//int
+  print('The type of a is ${numValue.runtimeType}'); //int
 
   //如果 ??= 左边的变量值为 null ,则将其赋值为右边的值
   var name;
@@ -155,12 +155,12 @@ void main() {
   var areaT;
   print(areaT?.runtimeType); //null
   var nameK = "tiankun";
-  print(nameK?.runtimeType);//String
+  print(nameK?.runtimeType); //String
 
   //拓展运算符
   //Dart 2.3引入了扩展运算符(...)和空值感知扩展运算符(...?)，它提供了一种将多个元素插入集合的简洁方法。
   var list5 = [1, 2, 3];
-  var list6 = [0, ...list5];//[0, 1, 2, 3]
+  var list6 = [0, ...list5]; //[0, 1, 2, 3]
   assert(list6.length == 4);
   //如果 list 可能为 null，此时则需要使用空值感知扩展运算符，否则会抛出异常
   //空值感知扩展运算符只有当 list 不为 null 时才会执行插值操作
@@ -172,21 +172,21 @@ void main() {
   // 为什么HashMap一定要将容量设置为2的指数呢？
   // 原因：对于一个整数n，如果它为2的指数，那么对于任意正整数h，都有 h % n = h & (n - 1)，
   // 基于这个性质，就可以使用位运算代替取模运算，在很大程度上提升性能。
-  var a = 2;  // Bit presentation 10
-  var b = 3;  // Bit presentation 11
+  var a = 2; // Bit presentation 10
+  var b = 3; // Bit presentation 11
   var result = (a & b);
-  print("(a & b) => $result");//0
+  print("(a & b) => $result"); //0
   result = (a | b);
-  print("(a | b) => $result");//3
+  print("(a | b) => $result"); //3
   result = (a ^ b);
-  print("(a ^ b) => $result");//1
+  print("(a ^ b) => $result"); //1
   result = (~b);
-  print("(~b) => $result");//-4
+  print("(~b) => $result"); //-4
 
   var result2 = (a < b);
-  print("(a < b) => $result2");//true
+  print("(a < b) => $result2"); //true
   result2 = (a > b);
-  print("(a > b) => $result2");//false
+  print("(a > b) => $result2"); //false
 
   print("========================== 流程控制 ================");
   // 使用标签来控制循环流程
@@ -194,9 +194,8 @@ void main() {
   for (var i = 0; i < 5; i++) {
     print("Innerloop: $i");
     innerLooper:
-
     for (var j = 0; j < 5; j++) {
-      if (j > 3 ) break ;
+      if (j > 3) break;
       // Quit the innermost loop
       if (i == 2) break innerLooper;
       // Do the same thing
@@ -210,7 +209,7 @@ void main() {
   for (var i = 0; i < 3; i++) {
     print("Outerloop:$i");
     for (var j = 0; j < 5; j++) {
-      if (j == 3){
+      if (j == 3) {
         continue outerLooper2;
       }
       print("Innerloop:$j");
@@ -226,7 +225,7 @@ void main() {
   details['Usrname'] = 'admin';
   details['Password'] = 'mypasswd';
   print(details);
-  details.forEach((k,v) => print('$k: $v'));
+  details.forEach((k, v) => print('$k: $v'));
 
   //String.runes属性：返回此字符串的可迭代Unicode代码点，Runes可迭代扩展。
   "Maxsu".runes.forEach((int rune) {
@@ -246,14 +245,14 @@ void main() {
 
   //可选的命名参数
   testParam2(123);
-  testParam2(123,s2:'hello');
-  testParam2(123,s2:'hello',s1:'world');
+  testParam2(123, s2: 'hello');
+  testParam2(123, s2: 'hello', s1: 'world');
 
   //带有默认值的可选参数
   testParam3("tiankun");
   testParam3(66666);
-  testParam3(66666, s1:'world');
-  testParam3("tiankun", s1:555);
+  testParam3(66666, s1: 'world');
+  testParam3("tiankun", s1: 555);
 
   //方法当做参数调用
   function2(function1);
@@ -273,17 +272,17 @@ void main() {
 
   //自执行函数
   // ignore: unnecessary_statements
-  ((x,y){
+  ((x, y) {
     print("$x -- $y");
-  }(3,5));
+  }(3, 5));
 
   //箭头函数（Lambda）
   printMsg();
   print(test());
-  List listR = ['apple','pear','banana'];//数组，列表
+  List listR = ['apple', 'pear', 'banana']; //数组，列表
   List list2 = List();
-  listR.forEach((value)=>print(value));
-  listR.forEach((value)=>list2.add(value));
+  listR.forEach((value) => print(value));
+  listR.forEach((value) => list2.add(value));
   print(list2);
 
   //递归函数
@@ -312,16 +311,9 @@ void main() {
 
   ConsolePrinter cp2 = ConsolePrinter.namedConst("tiankun");
   cp2.printData();
-
 }
 
-
-enum Status {
-  none,
-  running,
-  stopped,
-  paused
-}
+enum Status { none, running, stopped, paused }
 
 //=============================  函数 ============================
 /*
@@ -334,7 +326,7 @@ enum Status {
 /*
  * 1.可选位置参数  要指定可选的位置参数，请使用方括号[]，如果未传递可选参数值，则将其设置为NULL
  */
-void testParam(n1,[s1]) {
+void testParam(n1, [s1]) {
   print(n1);
   print(s1);
 }
@@ -342,7 +334,7 @@ void testParam(n1,[s1]) {
 /*
  * 2.可选命名参数: 与位置参数不同，必须在传递值时指定参数的名称。花括号{}可用于指定可选的命名参数。
  */
-void testParam2(n1,{s1,s2}) {
+void testParam2(n1, {s1, s2}) {
   print(n1);
   print(s1);
   print(s2);
@@ -351,7 +343,7 @@ void testParam2(n1,{s1,s2}) {
 /*
  * 3.默认可选参数（默认位置，命名），还可以为函数参数指定值。但是，这些参数也可以显式传递值。
  */
-void testParam3(n1,{s1:12}) {
+void testParam3(n1, {s1: 12}) {
   print(n1);
   print(s1);
 }
@@ -359,7 +351,7 @@ void testParam3(n1,{s1:12}) {
 /*
  * 4.内置函数：
  */
-ss(){
+ss() {
   print("     这也是一个内置函数".trim());
 }
 
@@ -369,11 +361,12 @@ ss(){
  * 6.方法当做参数调用
  */
 //(1)先定义了一个function1的方法 输出一句话
-void function1(){
+void function1() {
   print("function1");
 }
+
 //(2)又定义了一个function2的方法 调用function1的方法
-void function2(function1){
+void function2(function1) {
   function1();
 }
 //(3)调用function2的方法 将function1的方法当做参数传进去
@@ -383,7 +376,7 @@ void function2(function1){
  * 7.匿名函数(有参，无参)
  */
 // ignore: top_level_function_literal_block
-var anonymousFunction = (String name){
+var anonymousFunction = (String name) {
   print("This is anonymousFunction $name");
 };
 //匿名函数传参
@@ -408,6 +401,7 @@ List listTimes(List list, String times(str)) {
  * 如果函数只包含一个表达式，则可以使用简写语法
  */
 printMsg() => print("hello");
+
 int test() => 123;
 
 /*
@@ -439,17 +433,17 @@ factorial(number) {
 * 把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。
 * 3.闭包和回调函数时是两个概念，不是同一个概念。iOS中也有闭包block，而且block也能回调，但是闭包和回调函数是不同的概念。
 */
-myFunction(var numb){
-  return(){
+myFunction(var numb) {
+  return () {
     numb++;
     print(numb);
   };
 }
 
-bb(){
+bb() {
   int count = 22;
   // 将闭包返回
-  return (){
+  return () {
     print(--count);
   };
 }
@@ -459,7 +453,6 @@ bb(){
 */
 
 //=============================  函数 ============================
-
 
 class Printer {
   void printData() {
@@ -483,20 +476,20 @@ class ConsolePrinter implements Printer, Printer2 {
     this.data = data;
   }
 
-    // 这里不能重载，通过命名构造函数多样化
+  // 这里不能重载，通过命名构造函数多样化
 //  ConsolePrinter(int a, int b) {
 //    this.a = a;
 //  }
 
   // 命名构造函数：用于方便调用者生成不同用途或含义的变量
   // 我理解为了满足java重载构造函数，构造不同的对象
-  ConsolePrinter.namedNum(int a, int b){
+  ConsolePrinter.namedNum(int a, int b) {
     print("The namedConst name is : $a");
   }
 
   //命名构造函数：是在初始化时可直接使用类调用。
   //构造函数不能继承！如果想用父类中的命名构造函数创建一个子类，那你也必须在子类中实现这个命名构造函数！
-  ConsolePrinter.namedConst(String name){
+  ConsolePrinter.namedConst(String name) {
     print("The namedConst name is : $name");
   }
 
@@ -506,16 +499,15 @@ class ConsolePrinter implements Printer, Printer2 {
   @override
   void printData() {
     //三目运算符
-    print((data != null) ? data : "------------printing console data ================");
+    print((data != null)
+        ? data
+        : "------------printing console data ================");
   }
 
   @override
   void printData2() {
-    print((data != null) ? data : "------------printing console data2 ================");
+    print((data != null)
+        ? data
+        : "------------printing console data2 ================");
   }
 }
-
-
-
-
-
