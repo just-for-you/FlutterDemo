@@ -23,6 +23,7 @@ main() {
   logTypes.add("INFO");
   logTypes.add("DEBUG");
   print(logTypes); //[WARNING, ERROR, INFO, DEBUG]
+  print(logTypes.runtimeType);//List<dynamic>
   for (String type in logTypes) {
     print(type);
   }
