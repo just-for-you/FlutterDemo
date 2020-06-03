@@ -1,12 +1,18 @@
 
 import 'dart:math';
 
-import 'calculator.dart';
-import 'DartLibHelp.dart' as logger;//使用as关键字指定前缀
+import 'Calculator.dart';
+import 'LibHelp.dart' as logger;//使用as关键字指定前缀
 
 /// 【Dart lib】库
 /// 编程语言中的库表示例程集合(编程指令集)。Dart有一组内置库，可用于存储经常使用的例程。
 /// Dart库包含一组类，常量，函数，typedef，属性和异常。
+///
+/// import 和 library 指令可以用来创建一个模块化的，可共享的代码库。
+/// 库不仅提供了 API ，而且对代码起到了封装的作用： 以下划线 (_) 开头的标识符仅在库内可见。 每个 Dart 应用程序都是一个库 ，虽然没有使用 library 指令。
+/// 库可以通过包来分发。https://www.dartcn.com/tools/pub/
+///
+
 
 void main() {
 
@@ -62,5 +68,27 @@ void main() {
   // 如果导入两个具有冲突标识符的库，则可以为一个或两个库指定前缀。使用as关键字指定前缀。
   // eg: import 'library_uri' as prefix
   logger.log("hello im DartLibHelp logger ======= ");
+
+
+  /// 5.延迟加载库
+  // Deferred loading (也称之为 lazy loading) 可以让应用在需要的时候再加载库。
+  // 下面是一些使用延迟加载库的场景：
+  // 1.减少 APP 的启动时间。
+  // 2.执行 A/B 测试，例如 尝试各种算法的不同实现。
+  // 3.加载很少使用的功能，例如可选的屏幕和对话框。
+
+  // 要延迟加载一个库，需要先使用 deferred as 来导入：
+  // import 'package:greetings/hello.dart' deferred as hello;
+  // 当需要使用的时候，使用库标识符调用 loadLibrary() 函数来加载库：
+  // Future greet() async {
+  //  await hello.loadLibrary(); //使用 await 关键字暂停代码执行一直到库加载完成。
+  //  hello.printGreeting();
+  // }
+  // 注：在一个库上你可以多次调用 loadLibrary() 函数。但是该库只是载入一次。
+  // 使用延迟加载库的时候，请注意一下问题：
+  // 延迟加载库的常量在导入的时候是不可用的。 只有当库加载完毕的时候，库中常量才可以使用。
+  // 在导入文件的时候无法使用延迟库中的类型。 如果你需要使用类型，则考虑把接口类型移动到另外一个库中， 让两个库都分别导入这个接口库。
+  // Dart 隐含的把 loadLibrary() 函数导入到使用 deferred as 的命名空间 中。 loadLibrary() 方法返回一个 Future。
+  //
 
 }

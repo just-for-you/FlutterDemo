@@ -1,6 +1,6 @@
 
 
-/// 【Dart typedef】默认类型，函数类型别名
+/// 【Dart typedef】函数类型别名
 /// typedef或函数类型别名有助于定义指向内存中可执行代码的指针。简单地说，typedef可以用作引用函数的指针。
 ///
 /// Dart程序中实现typedef的步骤：
@@ -51,7 +51,41 @@ void main() {
   calculator(5,5,add);//10
   calculator(5,5,subtract);//0
   calculator(5,5,divide);//1.0
+
+  // 未使用typedef
+  SortedCollection coll = SortedCollection(sort);
+  // 虽然知道 compare 是函数，
+  // 但是函数是什么类型 ？
+  assert(coll.compare is Function);
+
+  // 使用typedef
+  SortedCollection2 coll2 = SortedCollection2(sort);
+  assert(coll2.compare is Function);
+  assert(coll2.compare is Compare);
+
+  //由于 typedefs 只是别名， 他们还提供了一种方式来判断任意函数的类型。
+  assert(sort is CompareN<int>); // True!
 }
 
 
+class SortedCollection {
+  Function compare;
+  SortedCollection(int f(Object a, Object b)) {
+    // 当把 f 赋值给 compare 的时候，类型信息丢失了。 f 的类型是 (Object, Object) → int (这里 → 代表返回值类型)， 但是 compare 得到的类型是 Function 。
+    // 如果我们使用显式的名字并保留类型信息， 这样开发者和工具都可以使用这些信息：
+    compare = f;
+  }
+}
 
+// Initial, broken implementation. // broken ？
+int sort(Object a, Object b) => 0;
+
+//提示： 目前，typedefs 只能使用在函数类型上， 我们希望将来这种情况有所改变。
+typedef Compare = int Function(Object a, Object b);
+class SortedCollection2 {
+  Compare compare;
+  SortedCollection2(this.compare);
+}
+
+// 由于 typedefs 只是别名，他们还提供了一种方式来判断任意函数的类型。例如：
+typedef CompareN<T> = int Function(T a, T b);

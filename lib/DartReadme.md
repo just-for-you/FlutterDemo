@@ -7,7 +7,6 @@
 4.Dart Editor：Studio全功能 IDE，并包含以上所有工具。支持代码补全、代码导航、快速修正、重构、调试等功能。
 
 
-
 ### dart 语言具特性:
 1.一切变量皆是对象，每个对象都是类的实例。int、double、函数、 null 等都是对象，所有对象都继承自 Object 类
 2.dart 是强类型语言，但由于具备类型推导功能所以类型声明是可选的
@@ -62,9 +61,37 @@ Flutter 渲染流程分为 7 个步骤：
 7.光栅化:最后的光栅化由 Engine 层来完成。
 
 
+### Dart基础：
+
+##### 关键字 keywords
+abstract 2	dynamic 2	implements 2	show 1
+as 2	else	import 2	static 2
+assert	enum	in	super
+async 1	export 2	interface 2	switch
+await 3	extends	is	sync 1
+break	external 2	library 2	this
+case	factory 2	mixin 2	throw
+catch	false	new	true
+class	final	null	try
+const	finally	on 1	typedef 2
+continue	for	operator 2	var
+covariant 2	Function 2	part 2	void
+default	get 2	rethrow	while
+deferred 2	hide 1	return	with
+do	if	set 2	yield 3
+# 避免使用这些单词作为标识符。 但是，如有必要，标有上标的关键字可以用作标识符：
+# 带有 1 上标的单词为 上下文关键字， 仅在特定位置具有含义。 他们在任何地方都是有效的标识符。
+# 带有 1 上标的单词为 上下文关键字， 仅在特定位置具有含义。 他们在任何地方都是有效的标识符。
+# 带有 2 上标的单词为 内置标识符， 为了简化将 JavaScript 代码移植到 Dart 的工作， 这些关键字在大多数地方都是有效的标识符， 但它们不能用作类或类型名称，也不能用作 import 前缀。
+# 带有 3 上标的单词是与 Dart 1.0 发布后添加的异步支持相关的更新，作为限制类保留字。
+# 不能在标记为 async ，async* 或 sync* 的任何函数体中使用 await 或 yield 作为标识符。
+# 关键字表中的剩余单词都是保留字。 不能将保留字用作标识符。
+
+
 ### Flutter基础：
 
 ##### 1.main()函数 & runApp函数
+程序开始执行main()函数，该函数是特定的、必须的、顶级函数。
 main()函数中只调用runApp函数，使用runApp函数可以将给定的根控件填满整个屏幕。
 你可能会有疑问，为什么一定要使用runApp函数？
 如果不调用runApp函数，项目也可以正常执行，但是屏幕上什么都不会显示。

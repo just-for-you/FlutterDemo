@@ -10,6 +10,8 @@ import 'package:xml/xml.dart' as xml; //xml解析包
 /// Pub有助于在存储库中安装包。托管软件包的存储库可以在 https://pub.dartlang.org/ 找到。
 /// 包元数据在文件pubsec.yaml中定义。YAML是Yet Another Markup Language的缩写。pub工具可用于下载应用程序所需的所有各种库。
 
+/// pub: https://www.dartcn.com/tools/pub/
+
 void main() {
 
   print("-------------- start parse xml -----");
