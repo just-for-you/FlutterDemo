@@ -20,9 +20,14 @@ void main() {
   Stream<int> asynchronousNaturalsTo(int n) async* {
     int k = 0;
     while (k < n) yield k++;
-    print(k);
   }
-  print(asynchronousNaturalsTo(50));//Instance of '_ControllerStream<int>'
+  print(asynchronousNaturalsTo(5));//Instance of '_ControllerStream<int>'
+  asynchronousNaturalsTo(5).listen((data)=>print(data));
+  //0
+  //1
+  //2
+  //3
+  //4
 
   // 如果生成器是递归的，可以使用 yield* 来提高其性能：
   Iterable<int> naturalsDownFrom(int n) sync* {
