@@ -1,11 +1,11 @@
 import 'dart:core';
-//import 'dart:mirrors'; 反射
+//import 'dart:mirrors'; 反射暂不支持
 
-/// dart基础语法： 数据类型 常用运算符 流程控制 函数 枚举
+/// dart基础语法：数据类型 常用运算符 流程控制 函数 枚举
+/// dart高阶语法：匿名函数，闭包函数，箭头函数，自执行函数，递归函数，回调函数【重要】
 
-/// 高阶语法：匿名函数，闭包函数，箭头函数，自执行函数，递归函数，回调函数 -重要
-///
 void main() {
+
   print("========================== 数据类型 ================");
   print("===== 数字 字符串 布尔 列表(类似于数组) 集合 映射 符文(用于表示字符串中的Unicode字符) 符号 =======");
   //1.数值型：数值型使用关键字num表示,它包含整型Int和浮点型double两种,它不同于其他的语言有多中数值类型,它只有整型和浮点型两种类型.
@@ -61,8 +61,8 @@ void main() {
   const area = pi * 12 * 12;
   print("The output is $area"); // 输出： 452.15999999999997
 
-  //列表类型
-  //Dart中，数组是List对象，因此大多数人将它称为列表。
+  /// 【列表类型】
+  /// Dart中，数组是List对象，因此大多数人将它称为列表
   var list = [1, 2, 3];
   assert(list.length == 3);
   assert(list[1] == 2);
@@ -72,17 +72,18 @@ void main() {
   var constantList = const [1, 2, 3];
   print(constantList);
 
-  //集合
-  //Dart中的Set是无序的唯一项的集合。Dart支持由Set文字和Set类型提供的集合。
+  /// 【集合】
+  /// Dart中的Set是无序的唯一项的集合。
+  /// Dart支持由Set文字和Set类型提供的集合。
   var halogens = {'yiibai.com', 'chlorine', 'bromine', 'iodine', 'astatine'};
-  //要创建一个空集合，请使用前面带有类型参数的{}，或者将{}赋给类型为Set的变量：
+  // 要创建一个空集合，请使用前面带有类型参数的{}，或者将{}赋给类型为Set的变量：
   var names = <String>{};
   Set<String> names2 = {};
-  //使用add()或addAll()方法将项添加到现有集合：
+  // 使用add()或addAll()方法将项添加到现有集合：
   var elements = <String>{};
   elements.add('fluorine');
   elements.addAll(halogens);
-  //要创建一个编译时常量的集合，请在set文字之前添加const：
+  // 要创建一个编译时常量的集合，请在set文字之前添加const：
   final constantSet = const {
     'fluorine',
     'chlorine',
@@ -92,37 +93,38 @@ void main() {
   };
   print(constantSet);
 
-  //映射
-  // 通常映射是关联键和值的对象。键和值都可以是任何类型的对象。
-  // 每个键只出现一次，但可以多次使用相同的值。Dart支持由映射文字和Map类型提供的映射。
+  /// 【映射】
+  /// 通常映射是关联键和值的对象，键和值都可以是任何类型的对象。
+  /// 每个键只出现一次，但可以多次使用相同的值。
+  /// Dart支持由映射文字和Map类型提供的映射，比较推荐映射文字方式
+
   var gifts = {
     // Key:    Value
     'first': 'partridge',
     'second': 'turtledoves',
     'fifth': 'golden rings'
   };
-
   var nobleGases = {
     2: 'helium',
     10: 'neon',
     18: 'argon',
   };
 
-  //可以使用Map构造函数创建相同的对象：
+  //可使用Map构造函数创建相同的对象：
   var gifts3 = Map();
-  gifts['first'] = 'partridge';
-  gifts['second'] = 'turtledoves';
-  gifts['fifth'] = 'golden rings';
+  gifts3['first'] = 'partridge';
+  gifts3['second'] = 'turtledoves';
+  gifts3['fifth'] = 'golden rings';
 
   var nobleGases3 = Map();
-  nobleGases[2] = 'helium';
-  nobleGases[10] = 'neon';
-  nobleGases[18] = 'argon';
+  nobleGases3[2] = 'helium';
+  nobleGases3[10] = 'neon';
+  nobleGases3[18] = 'argon';
 
-  //================= 常用运算符 =====================
+
   print("========================== 常用运算符 ================");
-  //is 用于判断变量是否是指定的数据类型
-  //is! 含义是 is 取反
+  // is 用于判断变量是否是指定的数据类型
+  // is! 含义是 is 取反
   var strValue = "leavesC";
   print(strValue is String); //true
   print(strValue is int); //false
@@ -132,17 +134,17 @@ void main() {
   print(10 / 3); //3.3333333333333335
   print(10 ~/ 3); //3
 
-  //as 用于强制类型转换  不同类型不能强制转化
+  // as 用于强制类型转换  不同类型不能强制转化
   num numValue3 = 10.5;
   print('The type of a is ${numValue3.runtimeType}'); //double
   num numValue = 10;
   print('The type of a is ${numValue.runtimeType}'); //int
   int intValue = numValue as int;
   print(intValue);
-  //可以使用 Object 的 runtimeType 属性来判断实例 的类型，该属性返回一个 Type 对象。
+  // 可以使用 Object 的 runtimeType 属性来判断实例 的类型，该属性返回一个 Type 对象。
   print('The type of a is ${numValue.runtimeType}'); //int
 
-  //如果 ??= 左边的变量值为 null ,则将其赋值为右边的值
+  // 如果 ??= 左边的变量值为 null ,则将其赋值为右边的值
   var name;
   var age = 25;
   name ??= "leavesC";
@@ -150,25 +152,25 @@ void main() {
   print("name：$name"); //name：leavesC
   print("age: $age"); //age: 25
 
-  //如果 ?. 左边的变量值不为 null，则右边的操作生效
-  //用于避免发生空指针异常
+  // 如果 ?. 左边的变量值不为 null，则右边的操作生效
+  // 用于避免发生空指针异常
   var areaT;
   print(areaT?.runtimeType); //null
   var nameK = "tiankun";
   print(nameK?.runtimeType); //String
 
-  //拓展运算符
-  //Dart 2.3引入了扩展运算符(...)和空值感知扩展运算符(...?)，它提供了一种将多个元素插入集合的简洁方法。
+  /// 【拓展运算符】
+  // Dart 2.3引入了扩展运算符(...)和空值感知扩展运算符(...?)，它提供了一种将多个元素插入集合的简洁方法。
   var list5 = [1, 2, 3];
   var list6 = [0, ...list5]; //[0, 1, 2, 3]
   assert(list6.length == 4);
-  //如果 list 可能为 null，此时则需要使用空值感知扩展运算符，否则会抛出异常
-  //空值感知扩展运算符只有当 list 不为 null 时才会执行插值操作
+  // 如果 list 可能为 null，此时则需要使用空值感知扩展运算符，否则会抛出异常
+  // 空值感知扩展运算符只有当 list 不为 null 时才会执行插值操作
   var list9;
   var list10 = [0, ...?list9];
   print(list10); //[0]
 
-  //位运算符：
+  /// 【位运算符】
   // 为什么HashMap一定要将容量设置为2的指数呢？
   // 原因：对于一个整数n，如果它为2的指数，那么对于任意正整数h，都有 h % n = h & (n - 1)，
   // 基于这个性质，就可以使用位运算代替取模运算，在很大程度上提升性能。
@@ -220,7 +222,7 @@ void main() {
   String str = "Hello";
   print(str.codeUnits);
 
-  //集合映射
+  // 集合映射
   var details = new Map();
   details['Usrname'] = 'admin';
   details['Password'] = 'mypasswd';
@@ -233,50 +235,51 @@ void main() {
     print(character);
   });
 
-  //枚举
+  /// 【枚举】
   print(Status.values);
   Status.values.forEach((v) => print('value: $v, index: ${v.index}'));
   print('running: ${Status.running}, ${Status.running.index}');
   print('running values[1]: ${Status.values[1]}');
 
   print("========================== 函数 ================");
-  //可选位置参数
+  /// 可选位置参数
   testParam(123456789);
 
-  //可选的命名参数
+  /// 可选的命名参数
   testParam2(123);
   testParam2(123, s2: 'hello');
   testParam2(123, s2: 'hello', s1: 'world');
 
-  //带有默认值的可选参数
+  /// 带有默认值的可选参数
   testParam3("tiankun");
   testParam3(66666);
   testParam3(66666, s1: 'world');
   testParam3("tiankun", s1: 555);
 
-  //方法当做参数调用
+  /// 方法当做参数调用
   function2(function1);
 
-  //匿名函数
+  /// 匿名函数
   var func = (int a) {
     print("anonymous fun");
     return a + 1;
   };
   print(func(5));
   anonymousFunction("kkkk");
-  //匿名方法传参
+
+  /// 匿名方法传参
   var listK = ['h', 'e', 'l', 'l', 'o'];
   print(listTimes(listK, (str) {
     return str * 3;
   }));
 
-  //自执行函数
+  /// 自执行函数
   // ignore: unnecessary_statements
   ((x, y) {
     print("$x -- $y");
   }(3, 5));
 
-  //箭头函数（Lambda）
+  /// 箭头函数（Lambda）
   printMsg();
   print(test());
   List listR = ['apple', 'pear', 'banana']; //数组，列表
@@ -285,10 +288,10 @@ void main() {
   listR.forEach((value) => list2.add(value));
   print(list2);
 
-  //递归函数
+  /// 递归函数
   print(factorial(6));
 
-  //闭包函数
+  /// 闭包函数
   var myFunctionB = myFunction(5);
   for (var i = 0; i < 5; i++) {
     // 执行闭包
@@ -300,7 +303,7 @@ void main() {
     funcB();
   }
 
-  //构造函数 & 命名构造函数
+  /// 构造函数 & 命名构造函数
   ConsolePrinter cp = ConsolePrinter(null);
   cp.printData();
   cp.printData2();
@@ -316,50 +319,38 @@ void main() {
 enum Status { none, running, stopped, paused }
 
 //=============================  函数 ============================
-/*
- * 可选参数：
- * 1.可选的位置参数
- * 2.可选的命名参数
- * 3.默认可选参数
- */
+/// 【可选参数：】
+/// 1.可选的位置参数
+/// 2.可选的命名参数
+/// 3.默认可选参数
 
-/*
- * 1.可选位置参数  要指定可选的位置参数，请使用方括号[]，如果未传递可选参数值，则将其设置为NULL
- */
+/// 1.可选位置参数: 要指定可选的位置参数，请使用方括号[]，如果未传递可选参数值，则将其设置为NULL
 void testParam(n1, [s1]) {
   print(n1);
   print(s1);
 }
 
-/*
- * 2.可选命名参数: 与位置参数不同，必须在传递值时指定参数的名称。花括号{}可用于指定可选的命名参数。
- */
+/// 2.可选命名参数: 与位置参数不同，必须在传递值时指定参数的名称。花括号{}可用于指定可选的命名参数。
 void testParam2(n1, {s1, s2}) {
   print(n1);
   print(s1);
   print(s2);
 }
 
-/*
- * 3.默认可选参数（默认位置，命名），还可以为函数参数指定值。但是，这些参数也可以显式传递值。
- */
+/// 3.默认可选参数（默认位置，命名），还可以为函数参数指定值。但是，这些参数也可以显式传递值。
 void testParam3(n1, {s1: 12}) {
   print(n1);
   print(s1);
 }
 
-/*
- * 4.内置函数：
- */
+/// 4.内置函数：
 ss() {
   print("     这也是一个内置函数".trim());
 }
 
-//5.自定义函数（普通函数）：有返回值（有参，无参）；无返回值（有参，无参）
+/// 5.自定义函数（普通函数）：有返回值（有参，无参）；无返回值（有参，无参）
 
-/*
- * 6.方法当做参数调用
- */
+/// 6.方法当做参数调用
 //(1)先定义了一个function1的方法 输出一句话
 void function1() {
   print("function1");
@@ -372,9 +363,7 @@ void function2(function1) {
 //(3)调用function2的方法 将function1的方法当做参数传进去
 //function2(function1);
 
-/*
- * 7.匿名函数(有参，无参)
- */
+/// 7.匿名函数(有参，无参)
 // ignore: top_level_function_literal_block
 var anonymousFunction = (String name) {
   print("This is anonymousFunction $name");

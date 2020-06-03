@@ -1,7 +1,8 @@
 
 
 
-/// operator 操作运算符 -重要
+/// Dart 操作运算符operator【重要】
+///
 /// https://www.jianshu.com/p/64a6ed7581aa
 ///一元后缀	expr++ expr-- () [] . ?.
 ///一元前缀	-expr ！expr ~expr ++expr --expr
@@ -14,7 +15,6 @@
 ///级联	..
 ///赋值	= *= /= ~/= %= += -= <<= >>= &= ^= |= ??=
 ///扩展运算符 ... ...? （Dart 2.3引入）
-
 
 ///Inner Function 内部函数
 
