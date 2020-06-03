@@ -4,6 +4,9 @@ import 'dart:math';
 import 'Calculator.dart';
 import 'LibHelp.dart' as logger;//使用as关键字指定前缀
 
+export 'Async.dart'; //在A库中使用export关键字引入B库，当我们使用A库的时候，会自动引入B库，也就是说我们导入了A库，就可以使用B库了。
+
+
 /// 【Dart lib】库
 /// 编程语言中的库表示例程集合(编程指令集)。Dart有一组内置库，可用于存储经常使用的例程。
 /// Dart库包含一组类，常量，函数，typedef，属性和异常。
