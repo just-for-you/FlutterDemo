@@ -17,7 +17,6 @@ import 'dart:io';
 */
 
 void main() {
-
   // demo2: 异步非阻塞
   // 当脚本继续读取文件时，首先执行“End of main async"。
   // Future类是dart:async的一部分，用于在异步任务完成后获取计算结果。然后，此Future值用于在计算完成后执行某些操作。
@@ -25,10 +24,11 @@ void main() {
   print(Directory.current.path); // D:\workspace1\FlutterDemo
 
   File file = new File(Directory.current.path + "\\data\\contact.txt");
-  Future<String> f = file.readAsString();//异步
+  Future<String> f = file.readAsString(); //异步
 
   // returns a futrue, this is Async method
-  f.then((data) => print(data)); // once file is read , call back method is invoked
+  f.then((data) =>
+      print(data)); // once file is read , call back method is invoked
   //1, One
   //2, Two
   //3, Three
@@ -43,11 +43,174 @@ void main() {
 
   print("Enter your name :");
   // prompt for user input
-  String name = stdin.readLineSync();//同步阻塞
+  String name = stdin.readLineSync(); //同步阻塞
   // this is a synchronous method that reads user input
   print("Hello Mr. $name");
   print("End of main");
 
+
+  // delayed  then  catchError
+  Future.delayed(new Duration(seconds: 2), () {
+    //return "hi world!";
+    throw AssertionError("Error");
+  }).then((data) {
+    //执行成功会走到这里
+    print("success");
+  }).catchError((e) {
+    //执行失败会走到这里
+    print(e);
+  });
+
+  // 异步任务中抛出了一个异常，then的回调函数将不会被执行，取而代之的是 catchError回调函数将被调用；
+  // 但是，并不是只有 catchError回调才能捕获错误，then方法还有一个可选参数onError，我们也可以它来捕获异常：
+  Future.delayed(new Duration(seconds: 2), () {
+    //return "hi world!";
+    throw AssertionError("Error");
+  }).then((data) {
+    print("success");
+  }, onError: (e) {
+    print(e);
+  });
+
+  // 有些时候，我们会遇到无论异步任务执行成功或失败都需要做一些事的场景，
+  // 比如在网络请求前弹出加载对话框，在请求结束后关闭对话框。这种场景，
+  // 有两种方法，第一种是分别在then或catch中关闭一下对话框，第二种就是使用Future的whenComplete回调
+  Future.delayed(new Duration(seconds: 2), () {
+    //return "hi world!";
+    throw AssertionError("Error");
+  }).then((data) {
+    //执行成功会走到这里
+    print(data);
+  }).catchError((e) {
+    //执行失败会走到这里
+    print(e);
+  }).whenComplete(() {
+    //无论成功或失败都会走到这里
+  });
+
+
+  //有些时候，我们需要等待多个异步任务都执行结束后才进行一些操作，
+  // 比如我们有一个界面，需要先分别从两个网络接口获取数据，获取成功后，
+  // 我们需要将两个接口数据进行特定的处理后再显示到UI界面上，应该怎么做？
+  // 答案是Future.wait，它接受一个Future数组参数，只有数组中所有Future都执行成功后，才会触发then的成功回调，
+  // 只要有一个Future执行失败，就会触发错误回调。
+  // 下面，我们通过模拟Future.delayed 来模拟两个数据获取的异步任务，
+  // 等两个异步任务都执行成功时，将两个异步任务的结果拼接打印出来，代码如下：
+  Future.wait([
+    // 2秒后返回结果
+    Future.delayed(new Duration(seconds: 2), () {
+      return "hello";
+    }),
+    // 4秒后返回结果
+    Future.delayed(new Duration(seconds: 4), () {
+      return " world";
+    })
+  ]).then((results) {
+    print(results[0] + results[1]);
+  }).catchError((e) {
+    print(e);
+  });
+
+
+  // 回调地狱(Callback Hell)
+  // 如果代码中有大量异步逻辑，并且出现大量异步任务依赖其它异步任务的结果时，
+  // 必然会出现Future.then回调中套回调情况。举个例子，比如现在有个需求场景是用户先登录，
+  // 登录成功后会获得用户ID，然后通过用户ID，再去请求用户个人信息，获取到用户个人信息后，为了使用方便，我们需要将其缓存在本地文件系统，代码如下：
+  // 先分别定义各个异步任务
+  Future<String> login(String userName, String pwd) {
+    //用户登录
+  }
+  Future<String> getUserInfo(String id) {
+    //获取用户信息
+  }
+  Future saveUserInfo(String userInfo) {
+    // 保存用户信息
+  }
+  //接下来，执行整个任务流：
+  login("alice", "******").then((id) {
+    //登录成功后通过，id获取用户信息
+    getUserInfo(id).then((userInfo) {
+      //获取用户信息后保存
+      saveUserInfo(userInfo).then((data) {
+        //保存用户信息，接下来执行其它操作
+      });
+    });
+  });
+
+
+  // 过多的嵌套会导致的代码可读性下降以及出错率提高，并且非常难维护，这个问题被形象的称为回调地狱（Callback Hell）
+  // 回调地狱问题在之前JavaScript中非常突出，也是JavaScript被吐槽最多的点，但随着ECMAScript6和ECMAScript7标准发布后，
+  // 这个问题得到了非常好的解决，而解决回调地狱的两大神器正是ECMAScript6引入了Promise，以及ECMAScript7中引入的async/await
+  // Dart中几乎是完全平移了JavaScript中的这两者：Future相当于Promise，而async/await连名字都没改。
+
+  // 使用Future消除Callback Hell
+  // Future 的所有API的返回值仍然是一个Future对象，所以可以很方便的进行链式调用” ，
+  // 如果在then中返回的是一个Future的话，该future会执行，执行结束后会触发后面的then回调，
+  // 这样依次向下，就避免了层层嵌套。
+  login("alice","******").then((id){
+    return getUserInfo(id);
+  }).then((userInfo){
+    return saveUserInfo(userInfo);
+  }).then((e){
+    //执行接下来的操作
+  }).catchError((e){
+    //错误处理
+    print(e);
+  });
+
+
+  // 使用async/await消除callback hell
+  // 通过Future回调中再返回Future的方式虽然能避免层层嵌套，但是还是有一层回调，
+  // 有没有一种方式能够让我们可以像写同步代码那样来执行异步任务而不使用回调的方式？
+  // 答案是肯定的，这就要使用async/await了
+  task() async {
+    try {
+      String id = await login("alice", "******");
+      String userInfo = await getUserInfo(id);
+      await saveUserInfo(userInfo);
+      //执行接下来的操作
+    } catch (e) {
+      //错误处理
+      print(e);
+    }
+  }
+
+  // 思考：
+  // async用来表示函数是异步的，定义的函数会返回一个Future对象，可以使用then方法添加回调函数。
+  // await 后面是一个Future，表示等待该异步任务完成，异步完成后才会往下走；await必须出现在 async 函数内部。
+  // 其实，无论是在JavaScript还是Dart中，async/await都只是一个语法糖，编译器或解释器最终都会将其转化为一个Promise（Future）的调用链。
+
+
+
+  // Stream
+  // 也是用于接收异步事件数据，和Future 不同的是，它可以接收多个异步操作的结果（成功或失败）。
+  // 也就是说，在执行异步任务时，可以通过多次触发成功或失败事件来传递结果数据或错误异常。
+  // Stream 常用于会多次读取数据的异步任务场景，如网络内容下载、文件读写等。
+  // 思考题：既然Stream可以接收多次事件，那能不能用Stream来实现一个订阅者模式的事件总线？
+  Stream.fromFutures([
+    // 1秒后返回结果
+    Future.delayed(new Duration(seconds: 1), () {
+      return "hello 1";
+    }),
+    // 抛出一个异常
+    Future.delayed(new Duration(seconds: 2),(){
+      throw AssertionError("Error");
+    }),
+    // 3秒后返回结果
+    Future.delayed(new Duration(seconds: 3), () {
+      return "hello 3";
+    })
+  ]).listen((data){
+    print(data);
+  }, onError: (e){
+    print(e.message);
+  },onDone: (){
+
+  });
+  // 上面的代码依次会输出：
+  // I/flutter (17666): hello 1
+  // I/flutter (17666): Error
+  // I/flutter (17666): hello 3
 
 }
 

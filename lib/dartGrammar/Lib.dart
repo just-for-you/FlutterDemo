@@ -4,7 +4,7 @@ import 'dart:math';
 import 'Calculator.dart';
 import 'LibHelp.dart' as logger;//使用as关键字指定前缀
 
-export 'Async.dart'; //在A库中使用export关键字引入B库，当我们使用A库的时候，会自动引入B库，也就是说我们导入了A库，就可以使用B库了。
+export 'AsyncAwait.dart'; //在A库中使用export关键字引入B库，当我们使用A库的时候，会自动引入B库，也就是说我们导入了A库，就可以使用B库了。
 
 
 /// 【Dart lib】库

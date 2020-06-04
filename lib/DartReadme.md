@@ -28,6 +28,13 @@
 * 一种方便的插入变量值的方式，字符串字面值：$msg
 * 应用程序的入口：main 函数
 
+# 在笔者看来，Dart的设计目标应该是同时借鉴了Java和JavaScript。
+# Dart在静态语法方面和Java非常相似，如类型定义、函数声明、泛型等，而在动态特性方面又和JavaScript很像，如函数式特性、异步支持等。
+# 除了融合Java和JavaScript语言之所长之外，Dart也具有一些其它具有表现力的语法，
+# 如可选命名参数、..（级联运算符）和?.（条件成员访问运算符）以及??（判空赋值运算符）。
+# 其实，对编程语言了解比较多的读者会发现，在Dart中其实看到的不仅有Java和JavaScript的影子，
+# 它还具有其它编程语言中的身影，如命名参数在Objective-C和Swift中早就很普遍，
+# 而??操作符在PHP 7.0语法中就已经存在了，因此我们可以看到Google对Dart语言给予厚望，是想把Dart打造成一门集百家之所长的编程语言。
 
 
 ### Flutter 选择 Dart 的原因：
@@ -38,6 +45,14 @@
 5.JIT & AOT 运行模式，支持开发时的快速迭代和正式发布后最大程度发挥硬件性能。
 6.Native Binding。在 Android 上，v8 的 Native Binding 可以很好地实现，但是 iOS 上的 JavaScriptCore 不可以，
 所以如果使用 JavaScript，Flutter 基础框架的代码模式就很难统一了。而 Dart 的 Native Binding 可以很好地通过 Dart Lib 实现。
+
+### Dart vs Java
+客观的来讲，Dart在语法层面确实比Java更有表现力；在VM层面，Dart VM在内存回收和吞吐量都进行了反复的优化，
+但具体的性能对比，笔者没有找到相关测试数据，但在笔者看来，只要Dart语言能流行，VM的性能就不用担心，
+毕竟Google在Go（没用VM但有GC）、JavaScript（v8）、Dalvik（Android上的Java VM）上已经有了很多技术积淀。
+值得注意的是Dart在Flutter中已经可以将GC做到10ms以内，所以Dart和Java相比，决胜因素并不会是在性能方面。
+而在语法层面，Dart要比Java更有表现力，最重要的是Dart对函数式编程支持要远强于Java(目前只停留在Lambda表达式)，
+而Dart目前真正的不足是生态，但笔者相信，随着Flutter的逐渐火热，会回过头来反推Dart生态加速发展，对于Dart来说，现在需要的是时间。
 
 
 ### Flutter 的 UI 渲染方案：Skia
