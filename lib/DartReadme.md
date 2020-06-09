@@ -205,4 +205,14 @@ dart2native编译器仅支持为其运行的操作系统创建native代码。因
 6.3.不支持 dart:mirrors(反射) 和 dart:developer这两个库。
 
 
+### Packages可以包含多种内容：
+Dart包：其中一些可能包含Flutter的特定功能，因此对Flutter框架具有依赖性，仅将其用于Flutter，例如fluro包。
+插件包：一种专用的Dart包，其中包含用Dart代码编写的API，以及针对Android（使用Java或Kotlin）和/或针对iOS（使用ObjC或Swift）平台的特定实现。一个具体的例子是battery插件包。
+
+
+
+
+
+
+
 
