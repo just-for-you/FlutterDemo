@@ -1,7 +1,17 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:FlutterDemo/state/BLoC/bloc_provider/bloc_provider.dart';
+import 'package:FlutterDemo/state/BLoC/rxdart/top_page.dart';
+import 'package:FlutterDemo/state/InheritedWidgetDemo.dart';
+import 'package:FlutterDemo/state/StreamBuilderDemo.dart';
+import 'package:FlutterDemo/state/scopedModel/scoped_model_demo.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+
+import 'state/BLoC/rxdart/bloc_rxdart_demo.dart';
+import 'state/BLoC/scoped/bloc_scoped_demo.dart';
+import 'state/NotificationDemo.dart';
+
 
 void main() => runApp(MyApp2());
 
@@ -76,7 +86,14 @@ class RoutesPage extends StatelessWidget {
       title: "routes page",
       //路由表定义
       routes: {
-        "ListPage": (context) => ListPage(),
+        //"ListPage": (context) => ListPage(),
+        //"ListPage": (context) => MyInheritedDemo(123456),
+        //"ListPage": (context) => NotificationDemo(),
+        //"ListPage": (context) => StreamBuilderDemo(),
+        //"ListPage": (context) => ScopedModelDemo(),
+        //"ListPage": (context) => BlocProviderDemo(),
+        //"ListPage": (context) => BlocRxDartDemo(),
+        "ListPage": (context) => BlocScopedDemo(),
         "MyPage2": (context) => MyPage2(),
         "MyPage": (context) => MyPage(),
         "MyApp": (context) => MyApp(),
@@ -107,14 +124,14 @@ class MyRouteState extends State {
           children: <Widget>[
             //凸起的按钮
             RaisedButton(
-                child: Text("click to listpage"),
+                child: Text("RaisedButton click to listpage"),
                 onPressed: () {
                   //根据命名路由做跳转
                   Navigator.pushNamed(context, "ListPage");
                   getDataByHttpClient();
                 }),
             RaisedButton(
-                child: Text("click to TestPage"),
+                child: Text("RaisedButton click to TestPage"),
                 onPressed: () {
                   //根据命名路由做跳转
                   Navigator.pushNamed(context, "TestPage");
@@ -124,10 +141,10 @@ class MyRouteState extends State {
                 onPressed: () {
                   Navigator.pushNamed(context, "MyPage2");
                 },
-                child: Text("click to MyPage2")),
+                child: Text("FlatButton click to MyPage2")),
             //带边框按钮
             OutlineButton(
-                child: Text("click to MyPage"),
+                child: Text("OutlineButton click to MyPage"),
                 onPressed: () {
                   Navigator.pushNamed(context, "MyPage");
                 }),
