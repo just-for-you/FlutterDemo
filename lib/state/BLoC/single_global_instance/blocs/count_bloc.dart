@@ -1,5 +1,6 @@
 import 'dart:async';
 
+
 class CountBLoC {
 
   int _count = 0;
@@ -15,6 +16,7 @@ class CountBLoC {
   dispose() {
     _countController.close();
   }
+
 }
 
 CountBLoC bLoC = CountBLoC();

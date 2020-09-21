@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+
 // Generic Interface for all BLoCs
 abstract class BlocBase {
   void dispose();
 }
+
 
 // Generic BLoC provider
 class BlocProvider<T extends BlocBase> extends StatefulWidget {
@@ -27,6 +29,7 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
 
   static Type _typeOf<T>() => T;
 }
+
 
 // Generic BLoC providerState
 class _BlocProviderState<T> extends State<BlocProvider<BlocBase>> {

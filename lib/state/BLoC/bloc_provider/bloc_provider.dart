@@ -12,7 +12,6 @@ class BlocProviderDemo extends StatelessWidget {
     return new MaterialApp(
       title: 'BlocProviderDemo',
       theme: new ThemeData.dark(),
-
       //顶层BlocProvider包裹
       home: BlocProvider<IncrementBloc>(
         bloc: IncrementBloc(),//状态

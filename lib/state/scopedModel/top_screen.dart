@@ -9,6 +9,7 @@ class TopScreen extends StatefulWidget {
   _TopScreenState createState() => _TopScreenState();
 }
 
+
 class _TopScreenState extends State<TopScreen> {
 
   /*
@@ -30,7 +31,7 @@ class _TopScreenState extends State<TopScreen> {
   @override
   Widget build(BuildContext context) {
     /*
-    * Scoped_model在子页面中获取model的方式1
+    * Scoped_model在子页面中获取model的方式1： 订阅者ScopedModelDescendant
     *
     * builder是一个ScopedModelDescendantBuilder，它接收三个参数。
     * 在builder中能够通过model来获取CountModel实例。
@@ -63,3 +64,17 @@ class _TopScreenState extends State<TopScreen> {
   }
 
 }
+
+
+
+/*
+* ScopedModel.of<T>(context, rebuildOnChange: rebuildOnChange)
+* Widget widget = rebuildOnChange
+    ? context.inheritFromWidgetOfExactType(type)
+    : context.ancestorWidgetOfExactType(type);
+*
+* Widget都有Element与之对应，Widget只是配置Element的数据，Widget每次重建Element却不一定重建，
+* 它只是根据配置（Widget）来进行Element刷新重建和销毁，子Element节点可以访问父Element，
+* 通过这种方式，不管Widget层级多深都能访问到祖先节点的数据
+*
+*/

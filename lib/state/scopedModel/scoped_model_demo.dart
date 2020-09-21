@@ -13,9 +13,11 @@ class ScopedModelDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //ScopedModel<T extends Model>是一个StatelessWidget，它接收一个model，并提供给需要它的所有部件。
+
+    // ScopedModel<T extends Model>是一个StatelessWidget，它接收一个model，并提供给需要它的所有部件。
+    // build中_InheritedModel派生自InheritedWidget
     return ScopedModel<CountModel>(
-      //将ScopedModel<T extends Model>的model属性绑定我们的CountModel对象。
+      // 将ScopedModel<T extends Model>的model属性绑定我们的CountModel对象。
       model: countModel,
       child: new MaterialApp(
         title: 'ScopedModelDemo',

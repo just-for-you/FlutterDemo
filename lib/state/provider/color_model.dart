@@ -16,4 +16,5 @@ class ColorModel with ChangeNotifier {
     _color = Color(_seed);
     notifyListeners();
   }
+
 }

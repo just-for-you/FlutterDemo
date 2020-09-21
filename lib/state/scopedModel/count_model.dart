@@ -8,8 +8,10 @@ import 'package:scoped_model/scoped_model.dart';
 *
 * 我们需要让我们自定义的CountModel继承至Model。
 * 在状态发生变化时（increment）通知所有用到了该model的子项更新状态。(notifyListeners)
+*
+* Listenable是Flutter框架自带的抽象接口，主要用来提供添加和移除观察者对象的接口
 */
-class CountModel extends Model{
+class CountModel extends Model {
 
   int _count = 0;
   get count => _count;
@@ -21,4 +23,5 @@ class CountModel extends Model{
 
   CountModel of(context) =>
       ScopedModel.of<CountModel>(context);
+
 }

@@ -14,6 +14,7 @@ class StreamBuilderDemo extends StatefulWidget {
 }
 
 class _StreamBuilderDemoState extends State<StreamBuilderDemo> {
+
   String _str = "我会变哦";
 
   // 步骤1: 初始化一个StreamController<可以是 int string...  一般是model>

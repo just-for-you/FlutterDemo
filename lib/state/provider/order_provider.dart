@@ -22,6 +22,7 @@ class OrderProvider with ChangeNotifier {
     orderList += List.generate(10, (index) => Order(false, 'Goods No. $index'));
     notifyListeners();
   }
+
 }
 
 class Order {

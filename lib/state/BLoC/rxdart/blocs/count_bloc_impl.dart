@@ -22,4 +22,6 @@ class CountBLoCImpl implements CountBloc {
   void dispose() {
     _subject.close();
   }
+
+
 }

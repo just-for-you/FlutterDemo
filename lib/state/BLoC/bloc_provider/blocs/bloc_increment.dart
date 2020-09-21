@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'bloc_base.dart';
 
+
 // 增量Bloc
 class IncrementBloc implements BlocBase {
   int _counter;
@@ -26,4 +27,5 @@ class IncrementBloc implements BlocBase {
     print('bloc disposed!');
     _counterPipe.close();
   }
+
 }

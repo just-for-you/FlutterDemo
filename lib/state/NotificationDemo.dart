@@ -15,6 +15,7 @@ var a = 0;
 // WidgetListener通过Widget NotificationListener来监听数据变化，最终通过setState变更数据
 // WidgetNotification 实例化了两次，一次在NotificationListener的树内部，一个在NotificationListener的外部，
 // 经过测试发现，在外部的WidgetNotification并不能通知到内容变化。
+
 class NotificationDemo extends StatefulWidget {
   @override
   _NotificationDemoState createState() => _NotificationDemoState();

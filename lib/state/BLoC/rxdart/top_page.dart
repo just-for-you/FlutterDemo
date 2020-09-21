@@ -4,8 +4,6 @@ import 'blocs/count_bloc_impl.dart';
 import 'under_page.dart';
 
 
-
-
 class TopPage extends StatefulWidget {
   @override
   _TopPageState createState() => _TopPageState();
@@ -35,8 +33,7 @@ class _TopPageState extends State<TopPage> {
             stream: bloc.stream,//监听stream
             initialData: bloc.value,//初始数据
             builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-              return Text(
-                'You hit me: ${snapshot.data} times',
+              return Text('You hit me: ${snapshot.data} times',
                 style: Theme.of(context).textTheme.display1,
               );
             }),

@@ -28,6 +28,7 @@ class GoodsListProvider with ChangeNotifier {
   rebuild(){
     shouldRebuild = false;
   }
+
 }
 
 class Goods {

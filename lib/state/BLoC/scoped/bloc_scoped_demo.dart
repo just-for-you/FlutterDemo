@@ -6,6 +6,7 @@ import 'blocs/bloc_provider.dart';
 
 
 class BlocScopedDemo extends StatelessWidget {
+
  @override
  Widget build(BuildContext context) {
    return BlocProvider(

@@ -92,7 +92,8 @@ class SecondScreen extends StatelessWidget {
   }
 
 
-  // 另外一种获取状态的方式：使用Consumer获取祖先节点中的数据，将会影响你的 app performance
+  // 另外一种获取状态的方式：Consumer：
+  // 将会影响你的 app performance
   // Consumer 非常有用，它的经典之处在于能够在复杂项目中，极大地缩小你的控件刷新范围。(局部刷新)
   // Provider.of<T>(context) 会导致调用的 context 页面范围的刷新，Consumer只刷新自己的部分
   //

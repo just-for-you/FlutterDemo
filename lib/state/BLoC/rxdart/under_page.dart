@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'blocs/count_bloc.dart';
 
+
 class UnderPage extends StatelessWidget {
   final CountBloc bloc;
 
@@ -17,8 +18,7 @@ class UnderPage extends StatelessWidget {
         child: StreamBuilder(
             stream: bloc.stream,//监听stream
             initialData: bloc.value,//状态共享
-            builder: (context, snapshot) => Text(
-                  "You hit me: ${snapshot.data} times",
+            builder: (context, snapshot) => Text("You hit me: ${snapshot.data} times",
                   style: Theme.of(context).textTheme.display1,
                 )),
       ),
