@@ -152,8 +152,11 @@ class MyRouteState extends State {
               image: AssetImage("images/star.jpg"),
               width: 150.0,
             ),
-            Image.asset("images/avatar_circle.png", width: 100.0),
-            MyUIPage()
+            // BoxFit.cover 告诉框架，图像应该尽可能小，但覆盖整个渲染框
+            Image.asset("images/avatar_circle.png", width: 100.0, fit: BoxFit.cover,),
+            MyUIPage(),
+            ButtonUIPage(),
+            TextUIApp()
           ],
         ),
       ),
