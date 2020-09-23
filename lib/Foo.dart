@@ -1,5 +1,6 @@
 
 class Foo {
+
   // class name can be a symbol
   m1() {
     // method name can be a symbol
