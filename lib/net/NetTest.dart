@@ -3,8 +3,6 @@ import 'dart:io';
 import 'dart:convert';
 
 
-
-
 //原始网络请求，繁琐不方便，网上有很多关于网络请求的封装
 //参考：https://flutterchina.club/networking/
 void getDataByHttpClient() async {
@@ -56,3 +54,9 @@ void getDataByHttpClient() async {
     print(e);
   }
 }
+
+
+
+
+
+

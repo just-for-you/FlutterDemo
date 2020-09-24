@@ -6,6 +6,7 @@ import 'package:FlutterDemo/state/scopedModel/scoped_model_demo.dart';
 import 'package:flutter/material.dart';
 
 import 'DetailPage.dart';
+import 'image/loadAssetUtil.dart';
 import 'mainpage/AnimPage.dart';
 import 'mainpage/AnimPage2.dart';
 import 'mainpage/IncCounterPage.dart';
@@ -83,6 +84,7 @@ class MyRouteState extends State {
                 child: Text("RaisedButton click to AnimPage"),
                 onPressed: () {
                   Navigator.pushNamed(context, "AnimPage");
+                  loadContactsAsset().then((data) => print(data));
                 }),
             FlatButton( //扁平化按钮
                 onPressed: () {
@@ -143,20 +145,17 @@ class MyRouteState extends State {
                 onPressed: () {
                   Navigator.pushNamed(context, "SingleGlobalDemo");
                 }),
-            Image(
-              image: NetworkImage(
-                  "https://mat1.gtimg.com/pingjs/ext2020/qqindex2018/dist/img/qq_logo_2x.png"),
-              width: 200.0,
-            ),
-            Image(
-              image: AssetImage("images/star.jpg"),
-              width: 150.0,
-            ),
+            // 加载图片&网络图片
+            Image(image: NetworkImage("https://mat1.gtimg.com/pingjs/ext2020/qqindex2018/dist/img/qq_logo_2x.png"), width: 200.0,),
+            Image(image: AssetImage("images/star.jpg"), width: 100.0,), // width属性没有效果？
             // BoxFit.cover 告诉框架，图像应该尽可能小，但覆盖整个渲染框
-            Image.asset("images/avatar_circle.png", width: 100.0, fit: BoxFit.cover,),
+            Image.asset("images/avatar_circle.png", width: 100.0, height: 100.0, fit: BoxFit.contain, color: Colors.greenAccent,
+              colorBlendMode: BlendMode.colorBurn,),
             MyUIPage(),
             ButtonUIPage(),
-            TextUIApp()
+            TextUIApp(),
+            ExpandedDemo(),
+            MainAxisDemo()
           ],
         ),
       ),
