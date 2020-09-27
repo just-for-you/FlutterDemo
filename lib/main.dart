@@ -18,8 +18,14 @@ import 'state/BLoC/rxdart/bloc_rxdart_demo.dart';
 import 'state/BLoC/scoped/bloc_scoped_demo.dart';
 import 'state/NotificationDemo.dart';
 
+import 'package:flutter/rendering.dart';
 
-void main() => runApp(MainApp());
+
+void main() {
+  // 开启界面绘制边界线，效果等同于Flutter Inspector中的DebugPaint，代码效果同步需要 hot restart
+  debugPaintSizeEnabled = false;
+  runApp(MainApp());
+}
 
 
 class MainApp extends StatelessWidget {
