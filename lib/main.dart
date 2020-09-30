@@ -1,3 +1,5 @@
+import 'package:FlutterDemo/demo/calculator/main.dart';
+import 'package:FlutterDemo/demo/listView/main.dart';
 import 'package:FlutterDemo/state/BLoC/bloc_provider/bloc_provider.dart';
 import 'package:FlutterDemo/state/BLoC/single_global_instance/single_global_demo.dart';
 import 'package:FlutterDemo/state/InheritedWidgetDemo.dart';
@@ -6,7 +8,7 @@ import 'package:FlutterDemo/state/scopedModel/scoped_model_demo.dart';
 import 'package:flutter/material.dart';
 
 import 'DetailPage.dart';
-import 'image/loadAssetUtil.dart';
+import 'demo/LoadAssetUtil.dart';
 import 'mainpage/AnimPage.dart';
 import 'mainpage/AnimPage2.dart';
 import 'mainpage/IncCounterPage.dart';
@@ -59,6 +61,8 @@ class RoutesPage extends StatelessWidget {
         "BlocRxDartDemo": (context) => BlocRxDartDemo(),
         "BlocScopedDemo": (context) => BlocScopedDemo(),
         "SingleGlobalDemo": (context) => SingleGlobalDemo(),
+        "CalculatorDemo": (context) => CalculatorDemo(),
+        "MyListHomePage": (context) => MyListHomePage(),
       },
       home: MyRoutePage(),
     );
@@ -79,6 +83,7 @@ class MyRouteState extends State {
       ),
       body: Center(
         child: ListView(
+          shrinkWrap: true,//这里无效果
           children: <Widget>[
             RaisedButton( //凸起的按钮
                 child: Text("RaisedButton click to listpage"),
@@ -151,6 +156,17 @@ class MyRouteState extends State {
                 onPressed: () {
                   Navigator.pushNamed(context, "SingleGlobalDemo");
                 }),
+            OutlineButton(
+                child: Text("click to CalculatorDemo"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "CalculatorDemo");
+                }),
+            OutlineButton(
+                child: Text("click to ListViewDemo"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "MyListHomePage");
+                }),
+
             // 加载图片&网络图片
             Image(image: NetworkImage("https://mat1.gtimg.com/pingjs/ext2020/qqindex2018/dist/img/qq_logo_2x.png"), width: 200.0,),
             Image(image: AssetImage("images/star.jpg"), width: 100.0,), // width属性没有效果？

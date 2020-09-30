@@ -42,7 +42,7 @@ void main() {
 
   //在前面加上r来创建“原始”字符串
   var s2 = r'In a raw string, not even \n gets special treatment.';
-  print(s2);
+  print(s2);//In a raw string, not even \n gets special treatment.  不会被转义，直接输出原始定义的字符串
 
   // int 转为 String
   String oneAsString = 1.toString();

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart' show rootBundle;
 
 
 
+// 异步加载json数据
 Future<String> loadContactsAsset() async {
   return await rootBundle.loadString('assets/data/contacts.json');
 }
@@ -114,3 +115,25 @@ StatefulWidget loadImage() {
 // assert(sourceSize == inputSize, 'centerSlice was used with a BoxFit that does not guarantee that the image is fully visible.');
 // 也就是说只有在显示大小大于原图大小的情况下，才允许使用这个属性，否则会报错。
 //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
