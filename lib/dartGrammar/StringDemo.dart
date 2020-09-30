@@ -61,6 +61,12 @@ void main() {
   // [^...] 匹配除开中括号内所有字符
   isMatch2('@#%()+-');
   isMatch2('中级#初级@资深*专家');
+
+  print("8.89".indexOf("."));//1
+  print("8.".indexOf("."));//1
+  print("87.".indexOf("."));//2
+  print("8.".length);//2
+
 }
 
 /*

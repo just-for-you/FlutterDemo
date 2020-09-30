@@ -9,6 +9,8 @@ abstract class Number {
   String apply(String original);
 }
 
+
+// 1..9
 class NormalNumber extends Number {
   NormalNumber(String display) {
     this.display = display;
@@ -32,11 +34,12 @@ class SymbolNumber extends Number {
     if (index == -1 && original != '0') {
       return '-' + original;
     } else {
-      return original.replaceFirst(RegExp(r'-'), '');
+      return original.replaceFirst(RegExp(r'-'), '');//正则表达式
     }
   }
 }
 
+// .
 class DecimalNumber extends Number {
   @override
   String get display => ('.');
@@ -46,16 +49,17 @@ class DecimalNumber extends Number {
     if (index == -1) {
       return original + '.';
     } else if (index == original.length) {
-      return original.replaceFirst(new RegExp(r'.'), '');
+      return original.replaceFirst(RegExp(r'.'), '');//基本不会走到
     } else {
       return original;
     }
   }
 }
 
+
+//123  456  789
 class NumberButtonLine extends StatelessWidget {
-  NumberButtonLine({@required this.array, this.onPress})
-      : assert(array != null);
+  NumberButtonLine({@required this.array, this.onPress}) : assert(array != null);
   final List<Number> array;
   final PressOperationCallback onPress;
 
@@ -80,15 +84,15 @@ class NumberButtonLine extends StatelessWidget {
   }
 }
 
+
+// 123456789
 class NumberButton extends StatefulWidget {
-  const NumberButton({@required this.number, @required this.pad, this.onPress})
-      : assert(number != null),
-        assert(pad != null);
+  const NumberButton({@required this.number, @required this.pad, this.onPress}) : assert(number != null), assert(pad != null);
   final Number number;
   final EdgeInsetsGeometry pad;
   final PressOperationCallback onPress;
   @override
-  State<StatefulWidget> createState() => new NumberButtonState();
+  State<StatefulWidget> createState() => NumberButtonState();
 }
 
 class NumberButtonState extends State<NumberButton> {
@@ -106,8 +110,7 @@ class NumberButtonState extends State<NumberButton> {
                 setState(() {
                   pressed = true;
                 });
-                Future.delayed(
-                    const Duration(milliseconds: 200),
+                Future.delayed(const Duration(milliseconds: 200),
                     () => setState(() {
                           pressed = false;
                         }));
@@ -125,3 +128,6 @@ class NumberButtonState extends State<NumberButton> {
         ));
   }
 }
+
+
+

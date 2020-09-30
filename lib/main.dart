@@ -1,3 +1,4 @@
+import 'package:FlutterDemo/demo/Row.dart';
 import 'package:FlutterDemo/demo/calculator/main.dart';
 import 'package:FlutterDemo/demo/listView/main.dart';
 import 'package:FlutterDemo/state/BLoC/bloc_provider/bloc_provider.dart';
@@ -177,7 +178,12 @@ class MyRouteState extends State {
             ButtonUIPage(),
             TextUIApp(),
             ExpandedDemo(),
-            MainAxisDemo()
+            MainAxisDemo(),
+            getRow1(),
+            getRow2(),
+            getRow3(),
+            getRow4(),
+            getRow5(),
           ],
         ),
       ),
